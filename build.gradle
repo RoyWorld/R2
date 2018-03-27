@@ -1,0 +1,31 @@
+group 'R2'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+task createJavaFile() {
+
+    file("src/main/java/com/r2").mkdirs()
+
+    file("src/test/java/com/r2").mkdirs()
+}
+
+task createJavaProject() {
+
+    sourceSets*.java.srcDirs*.each{ mkdir(it.path) }
+
+    sourceSets*.resources.srcDirs*.each{ mkdir(it.path) }
+
+    file('readme.md').createNewFile()
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
